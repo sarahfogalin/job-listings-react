@@ -20,10 +20,6 @@ const App = () => {
     width: window.innerWidth,
   });
 
-  useEffect(() => {
-    console.log(dimensions);
-  }, [dimensions])
-
   const isDesktop = dimensions.width > MAX_MOBILE_SCREEN ? true : false;
 
   useEffect(() => {
