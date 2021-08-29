@@ -1,38 +1,133 @@
+/* colors */
+
+:root {
+  --darkCyanDesat: hsl(180, 29%, 50%);
+  --darkCyanShadow: hsl(180, 29%, 50%, 0.25);
+  --lightCyanBg: hsl(180, 52%, 96%);
+  --lightCyanFilter: hsl(180, 31%, 95%);
+  --darkGrayCyan: hsl(180, 8%, 52%);
+  --veryDarkCyan: hsl(180, 14%, 20%);
+  --darkGray: hsl(220, 1%, 57%);
+  --white: hsl(0, 100%, 100%);
+}
+
+body,
+html {
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
+body {
+  position: relative;
+}
+
 .App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
   min-height: 100vh;
+  font-family: "Spartan", sans-serif;
+  font-weight: 500;
+  font-size: 15px;
+  background-color: var(--lightCyanBg);
+  padding-bottom: 10px;
+}
+
+.flex-row {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.flex-wrap {
+  display: flex;
+  flex-wrap: wrap;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.header-img {
+  width: 100vw;
+  background-color: var(--darkCyanDesat);
+}
+
+@media only screen and (min-width: 769px) {
+  h1 {
+    font-size: 18px;
+    line-height: 18px;
   }
-  to {
-    transform: rotate(360deg);
+
+  h1:hover {
+    color: var(--darkCyanDesat);
+    cursor: pointer;
+  }
+
+  h2 {
+    color: var(--darkCyanDesat);
+    font-size: 15px;
+    line-height: 15px;
+  }
+
+  span {
+    color: var(--darkGray);
+    font-weight: 500;
+    font-size: 13px;
+  }
+
+  .card {
+    position: relative;
+    padding: 2vw;
+    margin: 2vw 8vw;
+    border-radius: 6px;
+    box-shadow: 2px 2px 30px 0px var(--darkCyanShadow);
+    background-color: var(--white);
+  }
+
+  .content-container {
+    position: relative;
+    top: -5vw;
+  }
+
+  .space-between {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .spacer {
+    height: 2vw;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  h1 {
+    font-size: 15px;
+    line-height: 10px;
+  }
+
+  h1:hover {
+    color: var(--darkCyanDesat);
+    cursor: pointer;
+  }
+
+  h2 {
+    color: var(--darkCyanDesat);
+    font-size: 13px;
+    line-height: 10px;
+  }
+
+  span {
+    color: var(--darkGray);
+    font-weight: 500;
+    font-size: 12px;
+  }
+
+  .card {
+    position: relative;
+    padding: 4vw 4vw 1vw 4vw;
+    margin: 10vw 5vw 5vw 5vw;
+    border-radius: 6px;
+    box-shadow: 2px 2px 30px 0px var(--darkCyanShadow);
+    background-color: var(--white);
+  }
+
+  .content-container {
+    position: relative;
+    top: -20vw;
   }
 }
