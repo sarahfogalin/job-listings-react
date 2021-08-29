@@ -36,27 +36,26 @@ const App = () => {
     };
   });
 
-  const filterJobList = () => {
-    const newList = jobData.filter(({ role, level, tools, languages }) => {
-      if (filters.length === 0) {
-        return true;
-      }
-
-      const allTags = [role, level];
-      if (tools) {
-        allTags.push(...tools);
-      }
-      if (languages) {
-        allTags.push(...languages);
-      }
-
-      return filters.every((filter) => allTags.includes(filter));
-    });
-
-    setJobList(newList);
-  };
-
   useEffect(() => {
+    const filterJobList = () => {
+      const newList = jobData.filter(({ role, level, tools, languages }) => {
+        if (filters.length === 0) {
+          return true;
+        }
+  
+        const allTags = [role, level];
+        if (tools) {
+          allTags.push(...tools);
+        }
+        if (languages) {
+          allTags.push(...languages);
+        }
+  
+        return filters.every((filter) => allTags.includes(filter));
+      });
+  
+      setJobList(newList);
+    };
     filterJobList();
   }, [filters]);
 
