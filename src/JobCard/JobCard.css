@@ -18,7 +18,7 @@
   background-color: var(--darkCyanDesat);
 }
 
-@media only screen and (min-width: 769px) {
+@media only screen and (min-width: 992px) {
   .company-logo {
     height: 8vw;
     padding-right: 2vw;
@@ -59,7 +59,7 @@
   }
 }
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 991px) {
   .company-logo {
     position: relative;
     top: -10vw;

@@ -2,7 +2,7 @@
   height: 12px;
 }
 
-@media only screen and (min-width: 769px) {
+@media only screen and (min-width: 992px) {
   .clear-button {
     align-self: center;
     font-size: 12px;
@@ -51,7 +51,7 @@
   }
 }
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 991px) {
   .clear-button {
     padding-bottom: 4vw;
     align-self: center;

@@ -10,7 +10,7 @@ import FiltersCard from "./FiltersCard/FiltersCard.js";
 // data
 import jobData from "./data.json";
 
-export const MAX_MOBILE_SCREEN = 768;
+export const MAX_MOBILE_SCREEN = 991;
 
 const App = () => {
   const [jobList, setJobList] = useState([]);
@@ -19,6 +19,10 @@ const App = () => {
     height: window.innerHeight,
     width: window.innerWidth,
   });
+
+  useEffect(() => {
+    console.log(dimensions);
+  }, [dimensions])
 
   const isDesktop = dimensions.width > MAX_MOBILE_SCREEN ? true : false;
 
