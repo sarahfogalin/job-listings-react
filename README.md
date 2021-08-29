@@ -27,11 +27,12 @@ Users should be able to:
 
 ### Screenshot
 
-*** screenshot here ***
+![Simple three in a row](https://user-images.githubusercontent.com/38594508/131265638-0977c619-c099-4094-92a3-7d2bebc8b546.png)
+
 
 ### Links
 
-- Live Site URL: [Add live site URL here](https://your-live-site-url.com)
+- Live Site URL: [Job Listings Vercel App](https://job-listings-react-sage.vercel.app/)
 
 ## My process
 
