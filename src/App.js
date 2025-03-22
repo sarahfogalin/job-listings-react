@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 
 // styles
 import "./App.css";
@@ -20,7 +20,7 @@ const App = () => {
     width: window.innerWidth,
   });
 
-  const isDesktop = dimensions.width > MAX_MOBILE_SCREEN ? true : false;
+  const isDesktop = dimensions.width > MAX_MOBILE_SCREEN;
 
   useEffect(() => {
     const handleResize = () => {
@@ -31,61 +31,59 @@ const App = () => {
     };
 
     window.addEventListener("resize", handleResize);
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  });
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+  
+  const filterJobList = useCallback(() => {
+    const newList = jobData.filter(({ role, level, tools, languages }) => {
+      if (filters.length === 0) return true;
 
-  useEffect(() => {
-    const filterJobList = () => {
-      const newList = jobData.filter(({ role, level, tools, languages }) => {
-        if (filters.length === 0) {
-          return true;
-        }
-  
-        const allTags = [role, level];
-        if (tools) {
-          allTags.push(...tools);
-        }
-        if (languages) {
-          allTags.push(...languages);
-        }
-  
-        return filters.every((filter) => allTags.includes(filter));
-      });
-  
-      setJobList(newList);
-    };
-    filterJobList();
+      const allTags = [role, level, ...(tools || []), ...(languages || [])];
+      return filters.every((filter) => allTags.includes(filter));
+    });
+
+    setJobList(newList);
   }, [filters]);
 
   useEffect(() => {
-    setJobList(jobData);
-  }, []);
+    filterJobList();
+  }, [filters, filterJobList]);
 
   const addFilter = (filter) => {
-    const exists = filters.find((f) => f === filter);
-    if (!exists) {
-      const newFilters = [...filters, filter];
-      setFilters(newFilters);
-    } else {
-      return;
+    if (!filters.includes(filter)) {
+      setFilters((prev) => [...prev, filter]);
     }
   };
 
   const removeFilter = (filter) => {
-    const exists = filters.find((f) => f === filter);
-    if (exists) {
-      const newFilters = filters.filter((f) => f !== filter);
-      setFilters(newFilters);
-    } else {
-      return;
-    }
+    setFilters((prev) => prev.filter((f) => f !== filter));
   };
 
   const clearFilters = () => {
     setFilters([]);
   };
+
+  const renderFilters = () =>
+    filters.length > 0 && (
+      <div className="filter-container">
+        <FiltersCard
+          filters={filters}
+          removeFilter={removeFilter}
+          clearFilters={clearFilters}
+        />
+      </div>
+    );
+
+  const renderJobs = () =>
+    jobList.length > 0 &&
+    jobList.map((job) => (
+      <JobCard
+        key={job.id}
+        job={job}
+        addFilter={addFilter}
+        isDesktop={isDesktop}
+      />
+    ));
 
   return (
     <div className="App">
@@ -99,27 +97,9 @@ const App = () => {
         className="header-img"
       />
       <div className={`${filters.length > 0 ? "content-container" : ""}`}>
-        {filters.length > 0 && (
-          <div className="filter-container">
-            <FiltersCard
-              filters={filters}
-              removeFilter={removeFilter}
-              clearFilters={clearFilters}
-            />
-          </div>
-        )}
+        {renderFilters()}
         {isDesktop && filters.length === 0 && <div className="spacer" />}
-        {jobList.length > 0 &&
-          jobList.map((job) => {
-            return (
-              <JobCard
-                job={job}
-                addFilter={addFilter}
-                isDesktop={isDesktop}
-                key={job.id}
-              />
-            );
-          })}
+        {renderJobs()}
       </div>
     </div>
   );
