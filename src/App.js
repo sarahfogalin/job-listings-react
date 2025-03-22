@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useCallback } from "react";
+import React, { useEffect, useState, useCallback, useMemo } from "react";
 
 // styles
 import "./App.css";
@@ -20,7 +20,7 @@ const App = () => {
     width: window.innerWidth,
   });
 
-  const isDesktop = dimensions.width > MAX_MOBILE_SCREEN;
+  const isDesktop = useMemo(() => dimensions.width > MAX_MOBILE_SCREEN, [dimensions.width]);
 
   useEffect(() => {
     const handleResize = () => {
@@ -33,35 +33,32 @@ const App = () => {
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
-  
-  const filterJobList = useCallback(() => {
-    const newList = jobData.filter(({ role, level, tools, languages }) => {
-      if (filters.length === 0) return true;
 
+  const filteredJobList = useMemo(() => {
+    return jobData.filter(({ role, level, tools, languages }) => {
+      if (filters.length === 0) return true;
       const allTags = [role, level, ...(tools || []), ...(languages || [])];
       return filters.every((filter) => allTags.includes(filter));
     });
-
-    setJobList(newList);
   }, [filters]);
 
   useEffect(() => {
-    filterJobList();
-  }, [filters, filterJobList]);
+    setJobList(filteredJobList);
+  }, [filteredJobList]);
 
-  const addFilter = (filter) => {
+  const addFilter = useCallback((filter) => {
     if (!filters.includes(filter)) {
       setFilters((prev) => [...prev, filter]);
     }
-  };
+  }, [filters]);
 
-  const removeFilter = (filter) => {
+  const removeFilter = useCallback((filter) => {
     setFilters((prev) => prev.filter((f) => f !== filter));
-  };
+  }, []);
 
-  const clearFilters = () => {
+  const clearFilters = useCallback(() => {
     setFilters([]);
-  };
+  }, []);
 
   const renderFilters = () =>
     filters.length > 0 && (
