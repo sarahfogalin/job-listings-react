@@ -4,8 +4,8 @@ import React, { useEffect, useState, useCallback, useMemo } from "react";
 import "./App.css";
 
 // components
-import JobCard from "./JobCard/JobCard.js";
-import FiltersCard from "./FiltersCard/FiltersCard.js";
+import JobCard from "./components/JobCard/JobCard.js";
+import FiltersCard from "./components/FiltersCard/FiltersCard.js";
 
 // data
 import jobData from "./data.json";
@@ -20,7 +20,10 @@ const App = () => {
     width: window.innerWidth,
   });
 
-  const isDesktop = useMemo(() => dimensions.width > MAX_MOBILE_SCREEN, [dimensions.width]);
+  const isDesktop = useMemo(
+    () => dimensions.width > MAX_MOBILE_SCREEN,
+    [dimensions.width]
+  );
 
   useEffect(() => {
     const handleResize = () => {
@@ -46,11 +49,14 @@ const App = () => {
     setJobList(filteredJobList);
   }, [filteredJobList]);
 
-  const addFilter = useCallback((filter) => {
-    if (!filters.includes(filter)) {
-      setFilters((prev) => [...prev, filter]);
-    }
-  }, [filters]);
+  const addFilter = useCallback(
+    (filter) => {
+      if (!filters.includes(filter)) {
+        setFilters((prev) => [...prev, filter]);
+      }
+    },
+    [filters]
+  );
 
   const removeFilter = useCallback((filter) => {
     setFilters((prev) => prev.filter((f) => f !== filter));
