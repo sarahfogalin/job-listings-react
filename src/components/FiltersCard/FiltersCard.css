@@ -2,6 +2,7 @@
   height: 12px;
 }
 
+/* Desktop */
 @media only screen and (min-width: 992px) {
   .clear-button {
     align-self: center;
@@ -51,6 +52,7 @@
   }
 }
 
+/* Mobile */
 @media only screen and (max-width: 991px) {
   .clear-button {
     padding-bottom: 4vw;

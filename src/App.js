@@ -10,21 +10,27 @@ import FiltersCard from "./components/FiltersCard/FiltersCard.js";
 // data
 import jobData from "./data.json";
 
+// Define mobile screen breakpoint
 export const MAX_MOBILE_SCREEN = 991;
 
 const App = () => {
+  // State to manage job listings, selected filters
   const [jobList, setJobList] = useState([]);
   const [filters, setFilters] = useState([]);
+
+  // State to track window dimensions for responsive design
   const [dimensions, setDimensions] = useState({
     height: window.innerHeight,
     width: window.innerWidth,
   });
 
+  // Determine if screen is desktop
   const isDesktop = useMemo(
     () => dimensions.width > MAX_MOBILE_SCREEN,
     [dimensions.width]
   );
 
+  // Handle resize and update dimensions
   useEffect(() => {
     const handleResize = () => {
       setDimensions({
@@ -37,6 +43,7 @@ const App = () => {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
+  // Filter job listings based on selected filters
   const filteredJobList = useMemo(() => {
     return jobData.filter(({ role, level, tools, languages }) => {
       if (filters.length === 0) return true;
@@ -45,10 +52,12 @@ const App = () => {
     });
   }, [filters]);
 
+  // Update job list when filters change
   useEffect(() => {
     setJobList(filteredJobList);
   }, [filteredJobList]);
 
+  // Add a new filter if not already applied
   const addFilter = useCallback(
     (filter) => {
       if (!filters.includes(filter)) {
@@ -58,14 +67,17 @@ const App = () => {
     [filters]
   );
 
+  // Remove specified filter
   const removeFilter = useCallback((filter) => {
     setFilters((prev) => prev.filter((f) => f !== filter));
   }, []);
 
+  // Clear all filters
   const clearFilters = useCallback(() => {
     setFilters([]);
   }, []);
 
+  // Render filter selection UI if filters are applied
   const renderFilters = () =>
     filters.length > 0 && (
       <div className="filter-container">
@@ -77,6 +89,7 @@ const App = () => {
       </div>
     );
 
+  // Render list of job postings
   const renderJobs = () =>
     jobList.length > 0 &&
     jobList.map((job) => (
@@ -90,6 +103,7 @@ const App = () => {
 
   return (
     <div className="App">
+      {/* Responsive background image based on screen size */}
       <img
         src={
           isDesktop

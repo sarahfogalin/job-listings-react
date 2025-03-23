@@ -46,6 +46,7 @@ body {
   background-color: var(--darkCyanDesat);
 }
 
+/* Desktop */
 @media only screen and (min-width: 992px) {
   h1 {
     font-size: 18px;
@@ -94,6 +95,7 @@ body {
   }
 }
 
+/* Mobile */
 @media only screen and (max-width: 991px) {
   h1 {
     font-size: 15px;

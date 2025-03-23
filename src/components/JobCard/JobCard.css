@@ -18,6 +18,7 @@
   background-color: var(--darkCyanDesat);
 }
 
+/* Desktop */
 @media only screen and (min-width: 992px) {
   .company-logo {
     height: 8vw;
@@ -59,6 +60,7 @@
   }
 }
 
+/* Mobile */
 @media only screen and (max-width: 991px) {
   .company-logo {
     position: relative;
