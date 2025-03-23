@@ -2,20 +2,57 @@
 
 This is a solution to the [Job listings with filtering challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/job-listings-with-filtering-ivstIPCt). Frontend Mentor challenges help you improve your coding skills by building realistic projects. 
 
-## Table of contents
+## Demo
 
-- [Overview](#overview)
-  - [The challenge](#the-challenge)
-  - [Screenshot](#screenshot)
-  - [Links](#links)
-- [My process](#my-process)
-  - [Built with](#built-with)
-  - [What I learned](#what-i-learned)
-  - [Continued development](#continued-development)
-  - [Useful resources](#useful-resources)
-- [Author](#author)
+- Live Site URL: [Job Listings Vercel App](https://job-listings-react-sage.vercel.app/)
 
-## Overview
+## Screenshots
+
+![Simple three in a row](https://user-images.githubusercontent.com/38594508/131265638-0977c619-c099-4094-92a3-7d2bebc8b546.png)
+
+## Built with
+
+- Semantic HTML5 markup
+- CSS custom properties
+- Flexbox
+- Mobile-first workflow
+- [React](https://reactjs.org/) - JS library
+
+## Installation
+
+1. Clone the repository:
+
+   ```bash
+   git clone https://github.com/sarahfogalin/job-listings-react.git
+   ```
+
+2. Navigate to the project directory:
+
+   ```bash
+   cd job-listings-react
+   ```
+
+3. Install dependencies:
+
+   ```bash
+   npm install
+   ```
+
+## Usage
+
+### Running the development server
+
+   ```bash
+   npm start
+   ```
+
+### Building for production
+
+   ```bash
+   npm run build
+   ```
+
+## Challenge Overview
 
 ### The challenge
 
@@ -25,24 +62,7 @@ Users should be able to:
 - See hover states for all interactive elements on the page
 - Filter job listings based on the categories
 
-### Screenshot
-
-![Simple three in a row](https://user-images.githubusercontent.com/38594508/131265638-0977c619-c099-4094-92a3-7d2bebc8b546.png)
-
-
-### Links
-
-- Live Site URL: [Job Listings Vercel App](https://job-listings-react-sage.vercel.app/)
-
 ## My process
-
-### Built with
-
-- Semantic HTML5 markup
-- CSS custom properties
-- Flexbox
-- Mobile-first workflow
-- [React](https://reactjs.org/) - JS library
 
 ### What I learned
 
@@ -59,4 +79,5 @@ In the future, I would like to be able to improve my skills regarding responsive
 ## Author
 
 - Github - [Sarah Fogalin](https://github.com/sarahfogalin)
+
 
